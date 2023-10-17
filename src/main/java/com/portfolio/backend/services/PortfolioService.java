@@ -2,12 +2,10 @@ package com.portfolio.backend.services;
 
 import com.portfolio.backend.models.Entry;
 import com.portfolio.backend.repositories.PortfolioRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
 @Service
 public class PortfolioService {
     private final PortfolioRepository portfolioRepository;
