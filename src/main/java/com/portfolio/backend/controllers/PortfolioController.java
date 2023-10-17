@@ -2,11 +2,9 @@ package com.portfolio.backend.controllers;
 
 import com.portfolio.backend.models.Entry;
 import com.portfolio.backend.services.PortfolioService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +21,13 @@ public class PortfolioController {
 
     @GetMapping
     public ResponseEntity<List<Entry>> getAllEntries() {
-        // List<Entry> entries = service
+         List<Entry> entries = service.findAll();
         return ResponseEntity.ok(entries);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> addNewPortfolio(@RequestBody Entry entry) {
+        service.save(entry);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
