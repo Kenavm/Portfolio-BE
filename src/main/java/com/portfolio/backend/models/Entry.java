@@ -1,12 +1,17 @@
 package com.portfolio.backend.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 public class Entry {
+    @GeneratedValue
+    @Id
+    private long id;
     private long userID;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -15,7 +20,8 @@ public class Entry {
     private String role;
     private String linkToRepos;
 
-    public Entry(long userID, LocalDate startDate, LocalDate endDate, String description, List<String> technologies, String role, String linkToRepos) {
+    public Entry(long id, long userID, LocalDate startDate, LocalDate endDate, String description, List<String> technologies, String role, String linkToRepos) {
+        this.id = id;
         this.userID = userID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -79,5 +85,13 @@ public class Entry {
 
     public void setLinkToRepos(String linkToRepos) {
         this.linkToRepos = linkToRepos;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
