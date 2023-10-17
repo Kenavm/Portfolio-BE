@@ -1,18 +1,25 @@
 package com.portfolio.backend.services;
+
+import com.portfolio.backend.models.Entry;
+import com.portfolio.backend.repositories.PortfolioRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Component
+@Service
 public class PortfolioService {
-    private List<Entry> portfolioList;
-
-    public PortfolioService(List<entry> entryList) {
-        this.entryList = entryList;
+    private final PortfolioRepository portfolioRepository;
+    public PortfolioService(PortfolioRepository portfolioRepository) {
+        this.portfolioRepository = portfolioRepository;
+    }
+    public List<Entry> findAll() {
+        return portfolioRepository.findAll();
     }
 
-    public Entry addEntry(Entry entry) {
-        entryList.add(entry);
-        return entry;
+    public Entry save(Entry entry) {
+        return portfolioRepository.save(entry);
     }
 
-    public List<Entry> getPortfolioList() {
-        return portfolioList;
-    }
 }
