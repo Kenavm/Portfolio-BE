@@ -18,6 +18,10 @@ public class PrivateUser {
         this.password = password;
     }
 
+    public PrivateUser() {
+
+    }
+
     public long getId() {
         return id;
     }

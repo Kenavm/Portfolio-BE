@@ -24,6 +24,10 @@ public class PublicUser {
         this.profilePicture = profilePicture;
     }
 
+    public PublicUser() {
+
+    }
+
     public long getId() {
         return id;
     }

@@ -31,6 +31,10 @@ public class Entry {
         this.linkToRepos = linkToRepos;
     }
 
+    public Entry() {
+
+    }
+
     public long getUserID() {
         return userID;
     }

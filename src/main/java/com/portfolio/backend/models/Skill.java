@@ -18,6 +18,10 @@ public class Skill {
         this.level = level;
     }
 
+    public Skill() {
+
+    }
+
     public long getId() {
         return id;
     }
