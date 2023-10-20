@@ -10,10 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/portfolio")
-@CrossOrigin(origins = "http://localhost:5173")
 public class PortfolioController {
 
-    private PortfolioService service;
+    private final PortfolioService service;
 
     public PortfolioController(PortfolioService service) {
         this.service = service;
@@ -27,6 +26,8 @@ public class PortfolioController {
 
     @PostMapping
     public ResponseEntity<String> addNewPortfolioEntry(@RequestBody Entry entry) {
+        System.out.println(entry);
+        System.out.flush();
         service.save(entry);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
