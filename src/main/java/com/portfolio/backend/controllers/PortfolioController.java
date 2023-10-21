@@ -26,9 +26,7 @@ public class PortfolioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addNewPortfolioEntry(@RequestBody Entry entry) {
-        System.out.println(entry);
-        System.out.flush();
+    public ResponseEntity<String> addNewEntry(@RequestBody Entry entry) {
         service.save(entry);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
