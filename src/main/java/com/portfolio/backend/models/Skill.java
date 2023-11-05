@@ -1,6 +1,7 @@
 package com.portfolio.backend.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
@@ -10,10 +11,10 @@ public class Skill {
     @Id
     private long id;
     private String name;
-    private String level;
+    @Enumerated
+    private SkillLevel level;
 
-    public Skill(long id, String name, String level) {
-        this.id = id;
+    public Skill(String name, SkillLevel level) {
         this.name = name;
         this.level = level;
     }
@@ -38,11 +39,11 @@ public class Skill {
         this.name = name;
     }
 
-    public String getLevel() {
+    public SkillLevel getLevel() {
         return level;
     }
 
-    public void setLevel(String level) {
+    public void setLevel(SkillLevel level) {
         this.level = level;
     }
 }
