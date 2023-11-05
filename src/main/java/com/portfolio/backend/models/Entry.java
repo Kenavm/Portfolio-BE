@@ -18,9 +18,9 @@ public class Entry {
     private String description;
     private List<String> technologies;
     private String role;
-    private String linkToRepos;
+    private String repoLink;
 
-    public Entry(long id, long userID, LocalDate startDate, LocalDate endDate, String description, List<String> technologies, String role, String linkToRepos) {
+    public Entry(long id, long userID, LocalDate startDate, LocalDate endDate, String description, List<String> technologies, String role, String repoLink) {
         this.id = id;
         this.userID = userID;
         this.startDate = startDate;
@@ -28,7 +28,7 @@ public class Entry {
         this.description = description;
         this.technologies = technologies;
         this.role = role;
-        this.linkToRepos = linkToRepos;
+        this.repoLink = repoLink;
     }
 
     public Entry() {
@@ -83,12 +83,12 @@ public class Entry {
         this.role = role;
     }
 
-    public String getLinkToRepos() {
-        return linkToRepos;
+    public String getRepoLink() {
+        return repoLink;
     }
 
-    public void setLinkToRepos(String linkToRepos) {
-        this.linkToRepos = linkToRepos;
+    public void setRepoLink(String repoLink) {
+        this.repoLink = repoLink;
     }
 
     public long getId() {
