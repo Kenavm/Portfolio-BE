@@ -31,7 +31,4 @@ public class PublicUserService {
         publicUserRepository.save(publicUser);
     }
 
-    public void updateUser(U) {
-
-    }
 }
