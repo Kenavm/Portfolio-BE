@@ -17,7 +17,7 @@ public class PortfolioController {
 
     public PortfolioController(PortfolioService service) {
         this.service = service;
-    }
+    } 
 
     @GetMapping
     public ResponseEntity<List<Entry>> getAllEntries() {
