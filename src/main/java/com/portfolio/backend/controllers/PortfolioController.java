@@ -21,7 +21,7 @@ public class PortfolioController {
 
     @GetMapping
     public ResponseEntity<List<Entry>> getAllEntries() {
-         List<Entry> entries = service.findAll();
+        List<Entry> entries = service.findAll();
         return ResponseEntity.ok(entries);
     }
 
