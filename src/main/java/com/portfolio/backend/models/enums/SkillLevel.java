@@ -1,4 +1,4 @@
-package com.portfolio.backend.models;
+package com.portfolio.backend.models.enums;
 
 public enum SkillLevel {
 

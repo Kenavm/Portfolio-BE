@@ -1,5 +1,6 @@
 package com.portfolio.backend.models;
 
+import com.portfolio.backend.models.enums.SkillLevel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;

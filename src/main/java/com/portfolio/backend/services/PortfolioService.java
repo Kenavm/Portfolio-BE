@@ -1,6 +1,6 @@
 package com.portfolio.backend.services;
 
-import com.portfolio.backend.models.Entry;
+import com.portfolio.backend.models.PortfolioEntry;
 import com.portfolio.backend.repositories.PortfolioRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,11 @@ public class PortfolioService {
     public PortfolioService(PortfolioRepository portfolioRepository) {
         this.portfolioRepository = portfolioRepository;
     }
-    public List<Entry> findAll() {
+    public List<PortfolioEntry> findAll() {
         return portfolioRepository.findAll();
     }
 
-    public void save(Entry entry) {
+    public void save(PortfolioEntry entry) {
          portfolioRepository.save(entry);
     }
 

@@ -1,5 +1,6 @@
 package com.portfolio.backend.models;
 
+import com.portfolio.backend.models.enums.Technology;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,21 +9,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Entry {
+public class PortfolioEntry {
     @GeneratedValue
     @Id
     private long id;
-    private long userID;
+    private long userId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
-    private List<String> technologies;
+    private List<Technology> technologies;
     private String role;
     private String repoLink;
 
-    public Entry(long id, long userID, LocalDate startDate, LocalDate endDate, String description, List<String> technologies, String role, String repoLink) {
-        this.id = id;
-        this.userID = userID;
+    public PortfolioEntry(long userId, LocalDate startDate, LocalDate endDate, String description, List<Technology> technologies, String role, String repoLink) {
+        this.userId = userId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
@@ -31,15 +31,15 @@ public class Entry {
         this.repoLink = repoLink;
     }
 
-    public Entry() {
+    public PortfolioEntry() {
 
     }
-    public long getUserID() {
-        return userID;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setUserId(long userID) {
+        this.userId = userID;
     }
 
     public LocalDate getStartDate() {
@@ -66,11 +66,11 @@ public class Entry {
         this.description = description;
     }
 
-    public List<String> getTechnologies() {
+    public List<Technology> getTechnologies() {
         return technologies;
     }
 
-    public void setTechnologies(List<String> technologies) {
+    public void setTechnologies(List<Technology> technologies) {
         this.technologies = technologies;
     }
 
