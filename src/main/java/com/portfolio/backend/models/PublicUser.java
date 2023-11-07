@@ -5,8 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
-import java.awt.image.BufferedImage;
-
 @Entity
 public class PublicUser {
     @GeneratedValue
@@ -17,12 +15,13 @@ public class PublicUser {
     @Lob
     private byte[] profilePicture;
 
-    public PublicUser(long id, String name, String aboutDescription, byte[] profilePicture) {
-        this.id = id;
+
+    public PublicUser(String name, String aboutDescription, byte[] profilePicture) {
         this.name = name;
         this.aboutDescription = aboutDescription;
         this.profilePicture = profilePicture;
     }
+
 
     public PublicUser() {
 

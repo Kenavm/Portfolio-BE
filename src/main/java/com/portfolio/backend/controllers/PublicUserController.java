@@ -2,6 +2,7 @@ package com.portfolio.backend.controllers;
 
 import com.portfolio.backend.models.PublicUser;
 import com.portfolio.backend.services.PublicUserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,14 +18,21 @@ public class PublicUserController {
     }
 
     @GetMapping
-    public List<PublicUser> getAllPublicUsers() {
-        return publicUserService.findAll();
+    public ResponseEntity<List<PublicUser>> getAllPublicUsers() {
+        List<PublicUser> users = publicUserService.findAll();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("{user_id}")
-    public PublicUser getUserById(@PathVariable Long user_id) {
-        return publicUserService.findUserById(user_id);
+    public ResponseEntity<PublicUser> getUserById(@PathVariable Long user_id) {
+        PublicUser user = publicUserService.findUserById(user_id);
+        return ResponseEntity.ok(user);
     }
 
+    @PostMapping
+    public ResponseEntity<PublicUser> addPublicUser(@RequestBody PublicUser publicUser) {
+        publicUserService.save(publicUser);
+        return ResponseEntity.accepted().build();
+    }
 
 }

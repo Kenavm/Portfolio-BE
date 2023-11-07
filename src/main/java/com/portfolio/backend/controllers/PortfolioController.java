@@ -28,6 +28,6 @@ public class PortfolioController {
     @PostMapping
     public ResponseEntity<String> addNewEntry(@RequestBody PortfolioEntry entry) {
         service.save(entry);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.accepted().build();
     }
 }
