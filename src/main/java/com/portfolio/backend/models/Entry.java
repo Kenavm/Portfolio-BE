@@ -34,7 +34,6 @@ public class Entry {
     public Entry() {
 
     }
-
     public long getUserID() {
         return userID;
     }
