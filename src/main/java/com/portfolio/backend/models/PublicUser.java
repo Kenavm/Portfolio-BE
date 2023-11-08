@@ -12,16 +12,12 @@ public class PublicUser {
     private long id;
     private String name;
     private String aboutDescription;
-    @Lob
-    private byte[] profilePicture;
 
 
-    public PublicUser(String name, String aboutDescription, byte[] profilePicture) {
+    public PublicUser(String name, String aboutDescription) {
         this.name = name;
         this.aboutDescription = aboutDescription;
-        this.profilePicture = profilePicture;
     }
-
 
     public PublicUser() {
 
@@ -49,13 +45,5 @@ public class PublicUser {
 
     public void setAboutDescription(String aboutDescription) {
         this.aboutDescription = aboutDescription;
-    }
-
-    public byte[] getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(byte[] profilePicture) {
-        this.profilePicture = profilePicture;
     }
 }
