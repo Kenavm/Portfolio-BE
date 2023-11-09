@@ -21,7 +21,6 @@ public class PublicUser {
     }
 
     public PublicUser() {
-
     }
 
     public long getId() {

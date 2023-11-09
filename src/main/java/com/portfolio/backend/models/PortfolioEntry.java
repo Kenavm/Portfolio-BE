@@ -7,21 +7,22 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class PortfolioEntry {
     @GeneratedValue
     @Id
-    private long id;
-    private long userId;
+    private Long id;
+    private Long userId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
-    private List<Technology> technologies;
+    private Set<Technology> technologies;
     private String role;
     private String repoLink;
 
-    public PortfolioEntry(long userId, LocalDate startDate, LocalDate endDate, String description, List<Technology> technologies, String role, String repoLink) {
+    public PortfolioEntry(Long userId, LocalDate startDate, LocalDate endDate, String description, Set<Technology> technologies, String role, String repoLink) {
         this.userId = userId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -34,11 +35,11 @@ public class PortfolioEntry {
     public PortfolioEntry() {
 
     }
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userID) {
+    public void setUserId(Long userID) {
         this.userId = userID;
     }
 
@@ -66,11 +67,11 @@ public class PortfolioEntry {
         this.description = description;
     }
 
-    public List<Technology> getTechnologies() {
+    public Set<Technology> getTechnologies() {
         return technologies;
     }
 
-    public void setTechnologies(List<Technology> technologies) {
+    public void setTechnologies(Set<Technology> technologies) {
         this.technologies = technologies;
     }
 
@@ -94,7 +95,4 @@ public class PortfolioEntry {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 }
