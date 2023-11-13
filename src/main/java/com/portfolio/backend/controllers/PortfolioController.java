@@ -4,7 +4,6 @@ import com.portfolio.backend.exceptions.NoEntryByThisIdFoundException;
 import com.portfolio.backend.exceptions.NoUpdatedEntryFoundException;
 import com.portfolio.backend.models.PortfolioEntry;
 import com.portfolio.backend.services.PortfolioService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +33,7 @@ public class PortfolioController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> addNewEntry(@PathVariable Long id, @RequestBody PortfolioEntry entry) throws NoUpdatedEntryFoundException, NoEntryByThisIdFoundException {
+    public ResponseEntity<String> editEntry(@PathVariable Long id, @RequestBody PortfolioEntry entry) throws NoUpdatedEntryFoundException, NoEntryByThisIdFoundException {
         service.update(id, entry);
         return ResponseEntity.accepted().build();
     }

@@ -29,7 +29,7 @@ public class PortfolioService {
         }
 
         PortfolioEntry oldEntry = portfolioRepository.findById(id)
-                .orElseThrow(() -> new NoEntryByThisIdFoundException("No entry with this ID found"));
+                .orElseThrow(() -> new NoEntryByThisIdFoundException("No entry with this ID found "+ id));
 
         if(updatedEntry.getUserId() != null) {
             oldEntry.setUserId(updatedEntry.getUserId());
