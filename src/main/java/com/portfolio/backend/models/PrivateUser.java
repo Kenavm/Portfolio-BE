@@ -1,25 +1,43 @@
 package com.portfolio.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
-public class PrivateUser {
-    @GeneratedValue
+@Table(name="private_user")
+public class PrivateUser implements UserDetails {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    private String userName;
+
+    @Column(unique=true)
+    private String username;
     private String password;
 
-    public PrivateUser(long id, String userName, String password) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-    }
+    @OneToMany
+    private List<PortfolioEntry> portfolioEntryList;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+            name="user_role_junction",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id")}
+    )
+    private Set<Role> authorities;
+
+
 
     public PrivateUser() {
 
+    }
+    public PrivateUser(String username, String password, List<PortfolioEntry> portfolioEntryList, Set<Role> authorities) {
+        this.username = username;
+        this.password = password;
+        this.portfolioEntryList = portfolioEntryList;
+        this.authorities = authorities;
     }
 
     public long getId() {
@@ -30,13 +48,7 @@ public class PrivateUser {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;
@@ -44,5 +56,49 @@ public class PrivateUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<PortfolioEntry> getPortfolioEntryList() {
+        return portfolioEntryList;
+    }
+
+    public void setPortfolioEntryList(List<PortfolioEntry> portfolioEntryList) {
+        this.portfolioEntryList = portfolioEntryList;
+    }
+
+    public Set<Role> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
     }
 }

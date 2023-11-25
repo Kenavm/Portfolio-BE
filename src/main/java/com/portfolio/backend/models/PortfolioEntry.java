@@ -3,6 +3,7 @@ package com.portfolio.backend.models;
 import com.portfolio.backend.models.enums.Technology;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
@@ -11,9 +12,10 @@ import java.util.Set;
 
 @Entity
 public class PortfolioEntry {
-    @GeneratedValue
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long userId;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -35,6 +37,7 @@ public class PortfolioEntry {
     public PortfolioEntry() {
 
     }
+
     public Long getUserId() {
         return userId;
     }
