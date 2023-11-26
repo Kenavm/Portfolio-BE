@@ -4,6 +4,7 @@ import com.portfolio.backend.models.LoginResponseDTO;
 import com.portfolio.backend.models.PrivateUser;
 import com.portfolio.backend.models.RegistrationDTO;
 import com.portfolio.backend.services.AuthenticationService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +26,7 @@ public class AuthenticationController {
     //maybe change so that the backend is just the token and not the whole user
     //without password
     @PostMapping("/login")
-    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){
-        return authenticationService.loginUser(body.getUsername(),body.getPassword());
+    public LoginResponseDTO loginUser(Authentication auth){
+        return authenticationService.loginUser(auth);
     }
 }

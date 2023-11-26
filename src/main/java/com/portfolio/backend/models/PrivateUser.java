@@ -16,10 +16,6 @@ public class PrivateUser implements UserDetails {
     @Column(unique=true)
     private String username;
     private String password;
-
-    @OneToMany
-    private List<PortfolioEntry> portfolioEntryList;
-
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="user_role_junction",
@@ -29,14 +25,12 @@ public class PrivateUser implements UserDetails {
     private Set<Role> authorities;
 
 
-
     public PrivateUser() {
 
     }
-    public PrivateUser(String username, String password, List<PortfolioEntry> portfolioEntryList, Set<Role> authorities) {
+    public PrivateUser(String username, String password, Set<Role> authorities) {
         this.username = username;
         this.password = password;
-        this.portfolioEntryList = portfolioEntryList;
         this.authorities = authorities;
     }
 
@@ -47,8 +41,6 @@ public class PrivateUser implements UserDetails {
     public void setId(long id) {
         this.id = id;
     }
-
-
 
     public String getPassword() {
         return password;
@@ -84,14 +76,6 @@ public class PrivateUser implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public List<PortfolioEntry> getPortfolioEntryList() {
-        return portfolioEntryList;
-    }
-
-    public void setPortfolioEntryList(List<PortfolioEntry> portfolioEntryList) {
-        this.portfolioEntryList = portfolioEntryList;
     }
 
     public Set<Role> getAuthorities() {

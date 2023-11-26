@@ -23,14 +23,12 @@ public class AuthenticationService {
     private final PrivateUserRepository privateUserRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
-    public AuthenticationService(PrivateUserRepository privateUserRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, TokenService tokenService) {
+    public AuthenticationService(PrivateUserRepository privateUserRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.privateUserRepository = privateUserRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
         this.tokenService = tokenService;
     }
 
@@ -43,23 +41,19 @@ public class AuthenticationService {
         Set<Role> authorities = new HashSet<>();
 
         authorities.add(userRole);
-        List<PortfolioEntry> portfolioEntryList = new ArrayList<>();
 
-        return privateUserRepository.save(new PrivateUser(username,encodedPassword, portfolioEntryList,authorities));
+        return privateUserRepository.save(new PrivateUser(username,encodedPassword,authorities));
     }
 
-    public LoginResponseDTO loginUser(String username, String password) {
+    public LoginResponseDTO loginUser(Authentication auth) {
         try {
-            Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(username, password)
-            );
 
             String token = tokenService.generateJwt(auth);
 
             PrivateUser authenticatedUser = (PrivateUser) auth.getPrincipal();
-            Long userId = authenticatedUser.getId(); // Assuming getId() returns the userId
+            long userId = authenticatedUser.getId(); // Assuming getId() returns the userId
 
-            return new LoginResponseDTO(username,userId, token);
+            return new LoginResponseDTO(auth.getName(),userId, token);
 
         } catch (AuthenticationException e) {
             return new LoginResponseDTO("",0, "");
