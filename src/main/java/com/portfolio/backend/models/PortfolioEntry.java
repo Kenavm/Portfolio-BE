@@ -15,8 +15,7 @@ public class PortfolioEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long userId;
+    private Long privateUserId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
@@ -24,8 +23,8 @@ public class PortfolioEntry {
     private String role;
     private String repoLink;
 
-    public PortfolioEntry(Long userId, LocalDate startDate, LocalDate endDate, String description, Set<Technology> technologies, String role, String repoLink) {
-        this.userId = userId;
+    public PortfolioEntry(Long privateUserId, LocalDate startDate, LocalDate endDate, String description, Set<Technology> technologies, String role, String repoLink) {
+        this.privateUserId = privateUserId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
@@ -38,13 +37,6 @@ public class PortfolioEntry {
 
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userID) {
-        this.userId = userID;
-    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -98,4 +90,11 @@ public class PortfolioEntry {
         return id;
     }
 
+    public Long getPrivateUserId() {
+        return privateUserId;
+    }
+
+    public void setPrivateUserId(Long privateUserId) {
+        this.privateUserId = privateUserId;
+    }
 }

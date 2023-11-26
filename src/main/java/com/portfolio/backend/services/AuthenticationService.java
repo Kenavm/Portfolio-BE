@@ -48,19 +48,21 @@ public class AuthenticationService {
         return privateUserRepository.save(new PrivateUser(username,encodedPassword, portfolioEntryList,authorities));
     }
 
-    public LoginResponseDTO loginUser(String username, String password){
-
-        try{
+    public LoginResponseDTO loginUser(String username, String password) {
+        try {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password)
             );
 
             String token = tokenService.generateJwt(auth);
 
-            return new LoginResponseDTO(privateUserRepository.findByUsername(username).get(), token);
+            PrivateUser authenticatedUser = (PrivateUser) auth.getPrincipal();
+            Long userId = authenticatedUser.getId(); // Assuming getId() returns the userId
 
-        } catch(AuthenticationException e){
-            return new LoginResponseDTO(null, "");
+            return new LoginResponseDTO(username,userId, token);
+
+        } catch (AuthenticationException e) {
+            return new LoginResponseDTO("",0, "");
         }
     }
 }
