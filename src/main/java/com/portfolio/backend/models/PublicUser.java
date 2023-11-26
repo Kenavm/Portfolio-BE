@@ -11,16 +11,17 @@ public class PublicUser {
     @Id
     private long id;
     private String name;
+    private long privateUserId;
     @Column(length = 2000)
     private String aboutDescription;
 
-
-    public PublicUser(String name, String aboutDescription) {
-        this.name = name;
-        this.aboutDescription = aboutDescription;
+    public PublicUser() {
     }
 
-    public PublicUser() {
+    public PublicUser(String name, long privateUserId, String aboutDescription) {
+        this.name = name;
+        this.privateUserId = privateUserId;
+        this.aboutDescription = aboutDescription;
     }
 
     public long getId() {
@@ -45,5 +46,13 @@ public class PublicUser {
 
     public void setAboutDescription(String aboutDescription) {
         this.aboutDescription = aboutDescription;
+    }
+
+    public long getPrivateUserId() {
+        return privateUserId;
+    }
+
+    public void setPrivateUserId(long privateUserId) {
+        this.privateUserId = privateUserId;
     }
 }
