@@ -1,5 +1,6 @@
 package com.portfolio.backend.models;
 
+import com.portfolio.backend.models.enums.Authority;
 import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.*;
 
@@ -11,27 +12,27 @@ public class Role implements GrantedAuthority{
     @Column(name="role_id")
     private Integer roleId;
 
-    private String authority;
+    private Authority authority;
 
     public Role(){
         super();
     }
 
-    public Role(String authority){
+    public Role(Authority authority){
         this.authority = authority;
     }
 
-    public Role(Integer roleId, String authority){
+    public Role(Integer roleId, Authority authority){
         this.roleId = roleId;
         this.authority = authority;
     }
 
     @Override
     public String getAuthority() {
-        return this.authority;
+        return this.authority.toString();
     }
 
-    public void setAuthority(String authority){
+    public void setAuthority(Authority authority){
         this.authority = authority;
     }
 

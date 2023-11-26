@@ -3,6 +3,7 @@ package com.portfolio.backend;
 import com.portfolio.backend.models.PortfolioEntry;
 import com.portfolio.backend.models.PrivateUser;
 import com.portfolio.backend.models.Role;
+import com.portfolio.backend.models.enums.Authority;
 import com.portfolio.backend.repositories.PrivateUserRepository;
 import com.portfolio.backend.repositories.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -26,13 +27,12 @@ public class DemoApplication {
     @Bean
     CommandLineRunner run(RoleRepository roleRepository, PrivateUserRepository privateUserRepository, PasswordEncoder passwordEncode) {
         return args -> {
-            Role admin = roleRepository.save(new Role("ADMIN"));
-            Role user = roleRepository.save(new Role("USER"));
+            Role theresa = roleRepository.save(new Role(Authority.THERESA));
+            Role manuel = roleRepository.save(new Role(Authority.MANUEL));
             Set<Role> roles = new HashSet<>();
-            roles.add(user);
-            List<PortfolioEntry> portfolioEntryList = new ArrayList<>();
+            roles.add(theresa);
 
-            PrivateUser user1 = new PrivateUser("Theresa", passwordEncode.encode("password"), portfolioEntryList, roles);
+            PrivateUser user1 = new PrivateUser("Theresa", passwordEncode.encode("password"), roles);
             System.out.println(user1.getId());
             privateUserRepository.save(user1);
         };
