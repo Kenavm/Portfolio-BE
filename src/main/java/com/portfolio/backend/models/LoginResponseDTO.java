@@ -1,31 +1,47 @@
 package com.portfolio.backend.models;
 
+
 public class LoginResponseDTO {
-    private PrivateUser privateUser;
+    //username
+    private String username;
+    private long privateUserId;
     private String jwt;
 
-    public LoginResponseDTO() {
-        super();
-    }
-
-    public LoginResponseDTO(PrivateUser privateUser, String jwt) {
-        this.privateUser = privateUser;
+    public LoginResponseDTO(String username, long privateUserId, String jwt) {
+        this.username = username;
+        this.privateUserId = privateUserId;
         this.jwt = jwt;
     }
 
-    public PrivateUser getUser() {
-        return this.privateUser;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(PrivateUser user) {
-        this.privateUser = privateUser;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public long getPrivateUserId() {
+        return privateUserId;
+    }
+
+    public void setPrivateUserId(long privateUserId) {
+        this.privateUserId = privateUserId;
     }
 
     public String getJwt() {
-        return this.jwt;
+        return jwt;
     }
 
     public void setJwt(String jwt) {
         this.jwt = jwt;
     }
+
+    // Constructors, getters, and setters remain the same
+
+
+
+
+
 }
+
