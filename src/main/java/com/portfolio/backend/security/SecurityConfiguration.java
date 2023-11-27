@@ -51,9 +51,12 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public/{userid}").permitAll() //for public viewing without creating/editing
                         .requestMatchers("/login/**").permitAll()
-                        .requestMatchers("/page/theresa").hasAuthority("ROLE_THERESA")
-                        .requestMatchers("/page/manuel").hasAuthority("ROLE_MANUEL")
-                        .requestMatchers("/page/melina").hasAuthority("ROLE_MELINA")
+                        .requestMatchers("/page/1").hasAuthority("ROLE_THERESA")
+                        .requestMatchers("/page/2").hasAuthority("ROLE_MANUEL")
+                        .requestMatchers("/page/3").hasAuthority("ROLE_MELINA")
+                        .requestMatchers("/api/v1/portfolio").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
+                        .requestMatchers("/api/v1/skills").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
+                        .requestMatchers("/api/v1/public-user/{userid}").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter(tokenService))))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

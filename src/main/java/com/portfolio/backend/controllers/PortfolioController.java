@@ -26,6 +26,12 @@ public class PortfolioController {
         return ResponseEntity.ok(entries);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<List<PortfolioEntry>> getEntriesById(@PathVariable Long id) {
+        List<PortfolioEntry> entries = service.findEntriesById(id);
+        return ResponseEntity.ok(entries);
+    }
+
     @PostMapping
     public ResponseEntity<String> addNewEntry(@RequestBody PortfolioEntry entry) {
         service.save(entry);

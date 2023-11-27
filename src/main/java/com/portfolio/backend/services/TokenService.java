@@ -15,15 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class TokenService {
     private final JwtEncoder jwtEncoder;
-    private final JwtDecoder jwtDecoder;
-
-
     public static final String DELIMITER = ",";
     public static final String KEY_VALUE = "roles";
 
-    public TokenService(JwtEncoder jwtEncoder, JwtDecoder jwtDecoder) {
+    public TokenService(JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
-        this.jwtDecoder = jwtDecoder;
     }
 
     public String generateJwt(Authentication auth){

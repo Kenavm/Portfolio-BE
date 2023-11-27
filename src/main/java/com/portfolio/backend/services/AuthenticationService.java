@@ -13,8 +13,6 @@ public class AuthenticationService {
         this.tokenService = tokenService;
     }
 
-
-
     public LoginResponseDTO loginUser(Authentication auth) {
             String token = tokenService.generateJwt(auth);
             PrivateUser authenticatedUser = (PrivateUser) auth.getPrincipal();
