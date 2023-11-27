@@ -17,7 +17,7 @@ public class UserPopulator {
     @Bean
     ApplicationRunner run(PrivateUserRepository privateUserRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            PrivateUser user = new PrivateUser("Theresa", passwordEncoder.encode("password"), Set.of("ROLE_" + Role.THERESA));
+            PrivateUser user = new PrivateUser("Theresa", passwordEncoder.encode("password"), Set.of(Role.THERESA.toString()));
             privateUserRepository.save(user);
         };
     }
