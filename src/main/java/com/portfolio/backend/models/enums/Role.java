@@ -1,8 +1,12 @@
 package com.portfolio.backend.models.enums;
 
-public enum Authority {
+
+
+public enum Role {
 
     MANUEL,
     THERESA,
-    MELINA
+    MELINA;
+
+
 }
