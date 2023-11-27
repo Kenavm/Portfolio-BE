@@ -63,4 +63,10 @@ public class PortfolioService {
         portfolioRepository.save(oldEntry);
     }
 
+    public List<PortfolioEntry> findEntriesById(Long id) {
+        return portfolioRepository.findAllEntriesByPrivateUserId(id);
+    }
+
+
+
 }

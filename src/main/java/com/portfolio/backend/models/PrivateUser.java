@@ -1,10 +1,13 @@
 package com.portfolio.backend.models;
 
+import com.portfolio.backend.models.enums.Role;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="private_user")
@@ -16,19 +19,14 @@ public class PrivateUser implements UserDetails {
     @Column(unique=true)
     private String username;
     private String password;
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(
-            name="user_role_junction",
-            joinColumns = {@JoinColumn(name="user_id")},
-            inverseJoinColumns = {@JoinColumn(name="role_id")}
-    )
-    private Set<Role> authorities;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> authorities;
 
 
     public PrivateUser() {
 
     }
-    public PrivateUser(String username, String password, Set<Role> authorities) {
+    public PrivateUser(String username, String password, Set<String> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
@@ -40,6 +38,13 @@ public class PrivateUser implements UserDetails {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                .collect(Collectors.toSet());
     }
 
     public String getPassword() {
@@ -78,11 +83,8 @@ public class PrivateUser implements UserDetails {
         this.username = username;
     }
 
-    public Set<Role> getAuthorities() {
-        return authorities;
-    }
 
-    public void setAuthorities(Set<Role> authorities) {
+    public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
     }
 }
