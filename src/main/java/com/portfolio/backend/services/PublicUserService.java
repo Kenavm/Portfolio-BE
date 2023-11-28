@@ -23,10 +23,6 @@ public class PublicUserService {
         return publicUserRepository.findById(id).orElse(null);
     }
 
-    public PublicUser findByUserName(String name) {
-        return publicUserRepository.findByName(name).orElse(null);
-    }
-
     public void save(PublicUser publicUser) {
         publicUserRepository.save(publicUser);
     }

@@ -23,9 +23,9 @@ public class PublicUserController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("{user_id}")
-    public ResponseEntity<PublicUser> getUserById(@PathVariable Long user_id) {
-        PublicUser user = publicUserService.findUserById(user_id);
+    @GetMapping("{id}")
+    public ResponseEntity<PublicUser> getUserById(@PathVariable Long id) {
+        PublicUser user = publicUserService.findUserById(id);
         return ResponseEntity.ok(user);
     }
 
