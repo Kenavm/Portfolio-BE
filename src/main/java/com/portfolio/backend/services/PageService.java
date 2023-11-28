@@ -18,8 +18,8 @@ public class PageService {
     }
 
     public PageDTO getPageDTO(long privateUserId) {
-        PublicUser publicUser = publicUserService.findUserByPrivateUserId(privateUserId);
-        List<PortfolioEntry> portfolioEntryList = portfolioService.findEntriesById(privateUserId);
+        var publicUser = publicUserService.findUserByPrivateUserId(privateUserId);
+        var portfolioEntryList = portfolioService.findEntriesById(privateUserId);
         return new PageDTO(publicUser,portfolioEntryList);
     }
 }
