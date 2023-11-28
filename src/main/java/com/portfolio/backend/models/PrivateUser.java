@@ -21,8 +21,6 @@ public class PrivateUser implements UserDetails {
     private String password;
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> authorities;
-
-
     public PrivateUser() {
 
     }

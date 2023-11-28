@@ -49,14 +49,14 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/{userid}").permitAll() //for public viewing without creating/editing
+                        //.requestMatchers("/public/{userid}").permitAll() //for public viewing without creating/editing
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/page/1").hasAuthority("ROLE_THERESA")
                         .requestMatchers("/page/2").hasAuthority("ROLE_MANUEL")
                         .requestMatchers("/page/3").hasAuthority("ROLE_MELINA")
-                        .requestMatchers("/api/v1/portfolio").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
+                       /* .requestMatchers("/api/v1/portfolio").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
                         .requestMatchers("/api/v1/skills").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
-                        .requestMatchers("/api/v1/public-user/{userid}").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA")
+                        .requestMatchers("/api/v1/public-user/{userid}").hasAnyAuthority("ROLE_MANUEL", "ROLE_THERESA", "ROLE_MELINA") */
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter(tokenService))))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
