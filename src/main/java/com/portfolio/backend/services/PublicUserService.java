@@ -27,4 +27,8 @@ public class PublicUserService {
         publicUserRepository.save(publicUser);
     }
 
+    public PublicUser findUserByPrivateUserId(long privateUserId) {
+        return publicUserRepository.findByPrivateUserId(privateUserId).orElse(null);
+    }
+
 }
