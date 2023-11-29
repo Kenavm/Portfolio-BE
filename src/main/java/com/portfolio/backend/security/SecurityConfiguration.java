@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/{userid}").permitAll() //for public viewing without creating/editing
+                        .requestMatchers("/public/{userId}").permitAll() //for public viewing without creating/editing
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/page/1").hasAuthority("ROLE_THERESA")
                         .requestMatchers("/page/2").hasAuthority("ROLE_MANUEL")
