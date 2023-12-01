@@ -11,6 +11,7 @@ import com.portfolio.backend.services.TokenService;
 import com.portfolio.backend.utils.RSAKeyProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -30,6 +31,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
@@ -49,8 +51,9 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/{userId}").permitAll() //for public viewing without creating/editing
+                        .requestMatchers("/public/{userId}").permitAll()
                         .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/api/v1/public-user/2").hasAnyAuthority("ROLE_MANUEL")
                         .requestMatchers("/page/1").hasAuthority("ROLE_THERESA")
                         .requestMatchers("/page/2").hasAuthority("ROLE_MANUEL")
                         .requestMatchers("/page/3").hasAuthority("ROLE_MELINA")
@@ -106,10 +109,20 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.applyPermitDefaultValues();
+        config.addAllowedMethod(HttpMethod.PATCH);  // Add PATCH method to allowed methods
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }
