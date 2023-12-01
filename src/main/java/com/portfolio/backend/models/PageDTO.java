@@ -7,6 +7,7 @@ public class PageDTO {
     private PublicUser publicUser;
     private List<PortfolioEntry> portfolioEntryList;
 
+
     public PageDTO(PublicUser publicUser, List<PortfolioEntry> portfolioEntryList) {
         this.publicUser = publicUser;
         this.portfolioEntryList = portfolioEntryList;

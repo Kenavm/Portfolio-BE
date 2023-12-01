@@ -1,9 +1,9 @@
 package com.portfolio.backend.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class PublicUser {
@@ -15,14 +15,19 @@ public class PublicUser {
     @Column(length = 2000)
     private String aboutDescription;
 
+    @OneToMany
+    List<Skill> skillList;
+
     public PublicUser() {
     }
 
-    public PublicUser(String name, long privateUserId, String aboutDescription) {
+    public PublicUser(String name, long privateUserId, String aboutDescription, List<Skill> skillList) {
         this.name = name;
         this.privateUserId = privateUserId;
         this.aboutDescription = aboutDescription;
+        this.skillList = skillList;
     }
+
 
     public long getId() {
         return id;
@@ -54,5 +59,14 @@ public class PublicUser {
 
     public void setPrivateUserId(long privateUserId) {
         this.privateUserId = privateUserId;
+    }
+
+
+    public List<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
     }
 }
