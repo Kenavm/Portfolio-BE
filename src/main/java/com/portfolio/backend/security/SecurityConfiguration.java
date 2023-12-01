@@ -53,7 +53,6 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public/{userId}").permitAll()
                         .requestMatchers("/login/**").permitAll()
-                        .requestMatchers("/api/v1/public-user/2").hasAnyAuthority("ROLE_MANUEL")
                         .requestMatchers("/page/1").hasAuthority("ROLE_THERESA")
                         .requestMatchers("/page/2").hasAuthority("ROLE_MANUEL")
                         .requestMatchers("/page/3").hasAuthority("ROLE_MELINA")
