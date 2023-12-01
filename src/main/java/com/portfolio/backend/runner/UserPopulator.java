@@ -97,17 +97,16 @@ public class UserPopulator {
             );
             List<Skill> skillList2 = List.of(
                     new Skill(3,4),
-                    new Skill(2,3),
-                    new Skill(4,1),
-                    new Skill(5,4)
-            );
-            for (Skill skill : skillList1) {
-                skillRepository.save(skill);
-            }
+                    new Skill(2,5),
+                    new Skill(4,6),
+                    new Skill(1,3),
+                    new Skill(6,7),
+                    new Skill(5,3)
 
-            for (Skill skill : skillList2) {
-                skillRepository.save(skill);
-            }
+            );
+            skillRepository.saveAll(skillList1);
+
+            skillRepository.saveAll(skillList2);
             var theresaPublic = new PublicUser("Theresa", 1L, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et jus ", skillList1);
             var manuelPublic = new PublicUser("Manuel", 2L, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et jus ", skillList2);
             publicUserRepository.save(theresaPublic);
