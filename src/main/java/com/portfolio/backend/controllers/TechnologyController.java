@@ -24,7 +24,7 @@ public class TechnologyController {
     }
 
     @GetMapping("{id}")
-    public Set<Technology> getTechnologiesByPortfolioId(@PathVariable long portfolioId) {
-        return technologyService.getTechnologiesByPortfolioId(portfolioId);
+    public Set<Technology> getTechnologiesByPortfolioId(@PathVariable long id) {
+        return technologyService.getTechnologiesByPortfolioId(id);
     }
 }

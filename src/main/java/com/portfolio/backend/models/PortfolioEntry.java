@@ -16,7 +16,7 @@ public class PortfolioEntry {
     private LocalDate endDate;
     private String description;
 
-    @OneToMany
+    @ManyToMany
     private Set<Technology> technologies;
     private String role;
     private String repoLink;
