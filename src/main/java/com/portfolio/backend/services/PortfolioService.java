@@ -67,6 +67,10 @@ public class PortfolioService {
         return portfolioRepository.findAllEntriesByPrivateUserId(id);
     }
 
+    public PortfolioEntry findByPortfolioEntryId(long id) {
+        return portfolioRepository.findById(id).orElse(null);
+    }
+
 
 
 }

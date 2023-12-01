@@ -51,7 +51,9 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/{userId}").permitAll()
+                        .requestMatchers("/public/{userId}").permitAll() //for public viewing without creating/editing
+                        .requestMatchers("/api/v1/technologies/**").permitAll()
+                        //.requestMatchers("/api/v1/technologies/{id}").permitAll()
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/page/1").hasAuthority("ROLE_THERESA")
                         .requestMatchers("/page/2").hasAuthority("ROLE_MANUEL")

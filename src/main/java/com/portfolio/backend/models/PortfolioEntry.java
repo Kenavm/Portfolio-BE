@@ -1,10 +1,6 @@
 package com.portfolio.backend.models;
 
-import com.portfolio.backend.models.enums.Technology;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,9 +15,15 @@ public class PortfolioEntry {
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
+
+    @ManyToMany
     private Set<Technology> technologies;
     private String role;
     private String repoLink;
+
+    public PortfolioEntry() {
+
+    }
 
     public PortfolioEntry(Long privateUserId, LocalDate startDate, LocalDate endDate, String description, Set<Technology> technologies, String role, String repoLink) {
         this.privateUserId = privateUserId;
@@ -31,10 +33,6 @@ public class PortfolioEntry {
         this.technologies = technologies;
         this.role = role;
         this.repoLink = repoLink;
-    }
-
-    public PortfolioEntry() {
-
     }
 
 
@@ -60,14 +58,6 @@ public class PortfolioEntry {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Set<Technology> getTechnologies() {
-        return technologies;
-    }
-
-    public void setTechnologies(Set<Technology> technologies) {
-        this.technologies = technologies;
     }
 
     public String getRole() {
@@ -96,5 +86,18 @@ public class PortfolioEntry {
 
     public void setPrivateUserId(Long privateUserId) {
         this.privateUserId = privateUserId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Technology> getTechnologies() {
+        return technologies;
+    }
+
+
+    public void setTechnologies(Set<Technology> technologies) {
+        this.technologies = technologies;
     }
 }

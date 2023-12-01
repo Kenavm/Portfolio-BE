@@ -1,9 +1,8 @@
 package com.portfolio.backend.models;
 
 import com.portfolio.backend.models.enums.SkillLevel;
-import com.portfolio.backend.models.enums.Technology;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
@@ -12,18 +11,18 @@ public class Skill {
     @GeneratedValue
     @Id
     private long id;
-    private Technology name;
-    @Enumerated
-    private SkillLevel level;
-
-    public Skill(Technology name, SkillLevel level) {
-        this.name = name;
-        this.level = level;
-    }
+    private long idTechnology;
+    private long skillLevel;
 
     public Skill() {
 
     }
+
+    public Skill(long idTechnology, long skillLevel) {
+        this.idTechnology = idTechnology;
+        this.skillLevel = skillLevel;
+    }
+
 
     public long getId() {
         return id;
@@ -33,19 +32,22 @@ public class Skill {
         this.id = id;
     }
 
-    public Technology getName() {
-        return name;
+
+
+    public long getSkillLevel() {
+        return skillLevel;
     }
 
-    public void setName(Technology name) {
-        this.name = name;
+    public void setSkillLevel(long skillLevel) {
+        this.skillLevel = skillLevel;
     }
 
-    public SkillLevel getLevel() {
-        return level;
+
+    public long getIdTechnology() {
+        return idTechnology;
     }
 
-    public void setLevel(SkillLevel level) {
-        this.level = level;
+    public void setIdTechnology(long idTechnology) {
+        this.idTechnology = idTechnology;
     }
 }
