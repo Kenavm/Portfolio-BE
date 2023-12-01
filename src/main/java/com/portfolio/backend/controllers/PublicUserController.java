@@ -1,5 +1,6 @@
 package com.portfolio.backend.controllers;
 
+import com.portfolio.backend.exceptions.NoEntryByThisIdFoundException;
 import com.portfolio.backend.models.PublicUser;
 import com.portfolio.backend.services.PublicUserService;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/public-user")
+@RequestMapping("api/v1/public-user")
 @CrossOrigin(origins = "http://localhost:5173")
 public class PublicUserController {
     private final PublicUserService publicUserService;
@@ -32,6 +33,12 @@ public class PublicUserController {
     @PostMapping
     public ResponseEntity<PublicUser> addPublicUser(@RequestBody PublicUser publicUser) {
         publicUserService.save(publicUser);
+        return ResponseEntity.accepted().build();
+    }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<String> editDescription(@PathVariable Long id, @RequestBody String newText) throws NoEntryByThisIdFoundException {
+        publicUserService.update(id, newText);
         return ResponseEntity.accepted().build();
     }
 

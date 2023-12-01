@@ -1,5 +1,6 @@
 package com.portfolio.backend.services;
 
+import com.portfolio.backend.exceptions.NoEntryByThisIdFoundException;
 import com.portfolio.backend.models.PublicUser;
 import com.portfolio.backend.repositories.PublicUserRepository;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,14 @@ public class PublicUserService {
 
     public PublicUser findUserByPrivateUserId(long privateUserId) {
         return publicUserRepository.findByPrivateUserId(privateUserId).orElse(null);
+    }
+
+    public void update(Long id, String newDescription) throws NoEntryByThisIdFoundException {
+        PublicUser user = publicUserRepository.findById(id).orElseThrow(() -> new NoEntryByThisIdFoundException("No public user with this ID found "+ id));
+
+        user.setAboutDescription(newDescription.replace("\"", ""));
+
+        publicUserRepository.save(user);
     }
 
 }
